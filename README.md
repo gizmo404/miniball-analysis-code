@@ -1,6 +1,12 @@
 # miniball-analysis-code
 Analysis code for MINIBALL experiments at ISOLDE
 
+Based on code from Vinzenz and Andrés (add full names, institutes)
+
+g_clx is based on codes by Oliver Niedemeier, with contributions by Nigel Warr
+
+Current iteration developed by Liam Gaffney (CERN) and Daniel Cox (University of Jyväskylä)
+
 Code to take med data files and convert them to run and subsequently analyse
 
 ### Basic process for analysis
