@@ -1,5 +1,6 @@
 #ifndef hists_cxx
 #define hists_cxx
+#define TDIFF  			// TODO workaround to stop segfaulting
 
 #define GBINS 2000	// number of bins in gamma spectra
 #define GMAX 2000	// maximum energy in gamma spectra

@@ -39,6 +39,7 @@ namespace std {} using namespace std;
 // Header files passed as explicit arguments
 #include "../mbevts/mbevts.hh"
 #include "doppler.hh"
+#include "hists.hh"
 #include "MBGeometry.hh"
 #include "SpedeGeometry.hh"
 
@@ -50,7 +51,6 @@ namespace ROOT {
    static void delete_mbevts(void *p);
    static void deleteArray_mbevts(void *p);
    static void destruct_mbevts(void *p);
-   static void streamer_mbevts(TBuffer &buf, void *obj);
 
    // Function generating the singleton type initializer
    static TGenericClassInfo *GenerateInitInstanceLocal(const ::mbevts*)
@@ -60,14 +60,13 @@ namespace ROOT {
       static ::ROOT::TGenericClassInfo 
          instance("mbevts", ::mbevts::Class_Version(), "../mbevts/mbevts.hh", 9,
                   typeid(::mbevts), ::ROOT::Internal::DefineBehavior(ptr, ptr),
-                  &::mbevts::Dictionary, isa_proxy, 16,
+                  &::mbevts::Dictionary, isa_proxy, 4,
                   sizeof(::mbevts) );
       instance.SetNew(&new_mbevts);
       instance.SetNewArray(&newArray_mbevts);
       instance.SetDelete(&delete_mbevts);
       instance.SetDeleteArray(&deleteArray_mbevts);
       instance.SetDestructor(&destruct_mbevts);
-      instance.SetStreamerFunc(&streamer_mbevts);
       return &instance;
    }
    TGenericClassInfo *GenerateInitInstance(const ::mbevts*)
@@ -84,7 +83,6 @@ namespace ROOT {
    static void delete_doppler(void *p);
    static void deleteArray_doppler(void *p);
    static void destruct_doppler(void *p);
-   static void streamer_doppler(TBuffer &buf, void *obj);
 
    // Function generating the singleton type initializer
    static TGenericClassInfo *GenerateInitInstanceLocal(const ::doppler*)
@@ -94,14 +92,13 @@ namespace ROOT {
       static ::ROOT::TGenericClassInfo 
          instance("doppler", ::doppler::Class_Version(), "doppler.hh", 27,
                   typeid(::doppler), ::ROOT::Internal::DefineBehavior(ptr, ptr),
-                  &::doppler::Dictionary, isa_proxy, 16,
+                  &::doppler::Dictionary, isa_proxy, 4,
                   sizeof(::doppler) );
       instance.SetNew(&new_doppler);
       instance.SetNewArray(&newArray_doppler);
       instance.SetDelete(&delete_doppler);
       instance.SetDeleteArray(&deleteArray_doppler);
       instance.SetDestructor(&destruct_doppler);
-      instance.SetStreamerFunc(&streamer_doppler);
       return &instance;
    }
    TGenericClassInfo *GenerateInitInstance(const ::doppler*)
@@ -110,6 +107,51 @@ namespace ROOT {
    }
    // Static variable to force the class initialization
    static ::ROOT::TGenericClassInfo *_R__UNIQUE_(Init) = GenerateInitInstanceLocal((const ::doppler*)0x0); R__UseDummy(_R__UNIQUE_(Init));
+} // end of namespace ROOT
+
+namespace ROOT {
+   static TClass *hists_Dictionary();
+   static void hists_TClassManip(TClass*);
+   static void *new_hists(void *p = 0);
+   static void *newArray_hists(Long_t size, void *p);
+   static void delete_hists(void *p);
+   static void deleteArray_hists(void *p);
+   static void destruct_hists(void *p);
+
+   // Function generating the singleton type initializer
+   static TGenericClassInfo *GenerateInitInstanceLocal(const ::hists*)
+   {
+      ::hists *ptr = 0;
+      static ::TVirtualIsAProxy* isa_proxy = new ::TIsAProxy(typeid(::hists));
+      static ::ROOT::TGenericClassInfo 
+         instance("hists", "hists.hh", 26,
+                  typeid(::hists), ::ROOT::Internal::DefineBehavior(ptr, ptr),
+                  &hists_Dictionary, isa_proxy, 4,
+                  sizeof(::hists) );
+      instance.SetNew(&new_hists);
+      instance.SetNewArray(&newArray_hists);
+      instance.SetDelete(&delete_hists);
+      instance.SetDeleteArray(&deleteArray_hists);
+      instance.SetDestructor(&destruct_hists);
+      return &instance;
+   }
+   TGenericClassInfo *GenerateInitInstance(const ::hists*)
+   {
+      return GenerateInitInstanceLocal((::hists*)0);
+   }
+   // Static variable to force the class initialization
+   static ::ROOT::TGenericClassInfo *_R__UNIQUE_(Init) = GenerateInitInstanceLocal((const ::hists*)0x0); R__UseDummy(_R__UNIQUE_(Init));
+
+   // Dictionary for non-ClassDef classes
+   static TClass *hists_Dictionary() {
+      TClass* theClass =::ROOT::GenerateInitInstanceLocal((const ::hists*)0x0)->GetClass();
+      hists_TClassManip(theClass);
+   return theClass;
+   }
+
+   static void hists_TClassManip(TClass* ){
+   }
+
 } // end of namespace ROOT
 
 namespace ROOT {
@@ -129,7 +171,7 @@ namespace ROOT {
       static ::ROOT::TGenericClassInfo 
          instance("MBGeometry", "MBGeometry.hh", 24,
                   typeid(::MBGeometry), ::ROOT::Internal::DefineBehavior(ptr, ptr),
-                  &MBGeometry_Dictionary, isa_proxy, 0,
+                  &MBGeometry_Dictionary, isa_proxy, 4,
                   sizeof(::MBGeometry) );
       instance.SetNew(&new_MBGeometry);
       instance.SetNewArray(&newArray_MBGeometry);
@@ -174,7 +216,7 @@ namespace ROOT {
       static ::ROOT::TGenericClassInfo 
          instance("SpedeGeometry", "SpedeGeometry.hh", 21,
                   typeid(::SpedeGeometry), ::ROOT::Internal::DefineBehavior(ptr, ptr),
-                  &SpedeGeometry_Dictionary, isa_proxy, 0,
+                  &SpedeGeometry_Dictionary, isa_proxy, 4,
                   sizeof(::SpedeGeometry) );
       instance.SetNew(&new_SpedeGeometry);
       instance.SetNewArray(&newArray_SpedeGeometry);
@@ -277,218 +319,10 @@ void mbevts::Streamer(TBuffer &R__b)
 {
    // Stream an object of class mbevts.
 
-   UInt_t R__s, R__c;
    if (R__b.IsReading()) {
-      Version_t R__v = R__b.ReadVersion(&R__s, &R__c); if (R__v) { }
-      TObject::Streamer(R__b);
-      R__b >> gen;
-      R__b >> cid;
-      R__b >> sid;
-      R__b >> cluid;
-      R__b >> tha;
-      R__b >> pha;
-      {
-         vector<double> &R__stl =  gcor_gen;
-         R__stl.clear();
-         int R__i, R__n;
-         R__b >> R__n;
-         R__stl.reserve(R__n);
-         for (R__i = 0; R__i < R__n; R__i++) {
-            double R__t;
-            R__b >> R__t;
-            R__stl.push_back(R__t);
-         }
-      }
-      {
-         vector<int> &R__stl =  gcor_cid;
-         R__stl.clear();
-         int R__i, R__n;
-         R__b >> R__n;
-         R__stl.reserve(R__n);
-         for (R__i = 0; R__i < R__n; R__i++) {
-            int R__t;
-            R__b >> R__t;
-            R__stl.push_back(R__t);
-         }
-      }
-      {
-         vector<int> &R__stl =  gcor_sid;
-         R__stl.clear();
-         int R__i, R__n;
-         R__b >> R__n;
-         R__stl.reserve(R__n);
-         for (R__i = 0; R__i < R__n; R__i++) {
-            int R__t;
-            R__b >> R__t;
-            R__stl.push_back(R__t);
-         }
-      }
-      {
-         vector<int> &R__stl =  gcor_cluid;
-         R__stl.clear();
-         int R__i, R__n;
-         R__b >> R__n;
-         R__stl.reserve(R__n);
-         for (R__i = 0; R__i < R__n; R__i++) {
-            int R__t;
-            R__b >> R__t;
-            R__stl.push_back(R__t);
-         }
-      }
-      {
-         vector<double> &R__stl =  gcor_tha;
-         R__stl.clear();
-         int R__i, R__n;
-         R__b >> R__n;
-         R__stl.reserve(R__n);
-         for (R__i = 0; R__i < R__n; R__i++) {
-            double R__t;
-            R__b >> R__t;
-            R__stl.push_back(R__t);
-         }
-      }
-      {
-         vector<double> &R__stl =  gcor_pha;
-         R__stl.clear();
-         int R__i, R__n;
-         R__b >> R__n;
-         R__stl.reserve(R__n);
-         for (R__i = 0; R__i < R__n; R__i++) {
-            double R__t;
-            R__b >> R__t;
-            R__stl.push_back(R__t);
-         }
-      }
-      {
-         vector<double> &R__stl =  gcor_gtd;
-         R__stl.clear();
-         int R__i, R__n;
-         R__b >> R__n;
-         R__stl.reserve(R__n);
-         for (R__i = 0; R__i < R__n; R__i++) {
-            double R__t;
-            R__b >> R__t;
-            R__stl.push_back(R__t);
-         }
-      }
-      R__b >> ctr;
-      R__b.ReadStaticArray((double*)pen);
-      R__b.ReadStaticArray((double*)time);
-      R__b.ReadStaticArray((double*)sst);
-      R__b.ReadStaticArray((double*)td);
-      R__b.ReadStaticArray((int*)ann);
-      R__b.ReadStaticArray((int*)sec);
-      R__b.ReadStaticArray((int*)det);
-      R__b.ReadStaticArray((int*)coin);
-      R__b >> laser;
-      R__b >> pr_hits;
-      R__b >> rndm_hits;
-      R__b.ReadStaticArray((int*)pr_ptr);
-      R__b.ReadStaticArray((int*)rndm_ptr);
-      R__b >> file;
-      R__b.CheckByteCount(R__s, R__c, mbevts::IsA());
+      R__b.ReadClassBuffer(mbevts::Class(),this);
    } else {
-      R__c = R__b.WriteVersion(mbevts::IsA(), kTRUE);
-      TObject::Streamer(R__b);
-      R__b << gen;
-      R__b << cid;
-      R__b << sid;
-      R__b << cluid;
-      R__b << tha;
-      R__b << pha;
-      {
-         vector<double> &R__stl =  gcor_gen;
-         int R__n=int(R__stl.size());
-         R__b << R__n;
-         if(R__n) {
-            vector<double>::iterator R__k;
-            for (R__k = R__stl.begin(); R__k != R__stl.end(); ++R__k) {
-            R__b << (*R__k);
-            }
-         }
-      }
-      {
-         vector<int> &R__stl =  gcor_cid;
-         int R__n=int(R__stl.size());
-         R__b << R__n;
-         if(R__n) {
-            vector<int>::iterator R__k;
-            for (R__k = R__stl.begin(); R__k != R__stl.end(); ++R__k) {
-            R__b << (*R__k);
-            }
-         }
-      }
-      {
-         vector<int> &R__stl =  gcor_sid;
-         int R__n=int(R__stl.size());
-         R__b << R__n;
-         if(R__n) {
-            vector<int>::iterator R__k;
-            for (R__k = R__stl.begin(); R__k != R__stl.end(); ++R__k) {
-            R__b << (*R__k);
-            }
-         }
-      }
-      {
-         vector<int> &R__stl =  gcor_cluid;
-         int R__n=int(R__stl.size());
-         R__b << R__n;
-         if(R__n) {
-            vector<int>::iterator R__k;
-            for (R__k = R__stl.begin(); R__k != R__stl.end(); ++R__k) {
-            R__b << (*R__k);
-            }
-         }
-      }
-      {
-         vector<double> &R__stl =  gcor_tha;
-         int R__n=int(R__stl.size());
-         R__b << R__n;
-         if(R__n) {
-            vector<double>::iterator R__k;
-            for (R__k = R__stl.begin(); R__k != R__stl.end(); ++R__k) {
-            R__b << (*R__k);
-            }
-         }
-      }
-      {
-         vector<double> &R__stl =  gcor_pha;
-         int R__n=int(R__stl.size());
-         R__b << R__n;
-         if(R__n) {
-            vector<double>::iterator R__k;
-            for (R__k = R__stl.begin(); R__k != R__stl.end(); ++R__k) {
-            R__b << (*R__k);
-            }
-         }
-      }
-      {
-         vector<double> &R__stl =  gcor_gtd;
-         int R__n=int(R__stl.size());
-         R__b << R__n;
-         if(R__n) {
-            vector<double>::iterator R__k;
-            for (R__k = R__stl.begin(); R__k != R__stl.end(); ++R__k) {
-            R__b << (*R__k);
-            }
-         }
-      }
-      R__b << ctr;
-      R__b.WriteArray(pen, 8);
-      R__b.WriteArray(time, 8);
-      R__b.WriteArray(sst, 8);
-      R__b.WriteArray(td, 8);
-      R__b.WriteArray(ann, 8);
-      R__b.WriteArray(sec, 8);
-      R__b.WriteArray(det, 8);
-      R__b.WriteArray(coin, 8);
-      R__b << laser;
-      R__b << pr_hits;
-      R__b << rndm_hits;
-      R__b.WriteArray(pr_ptr, 8);
-      R__b.WriteArray(rndm_ptr, 8);
-      R__b << file;
-      R__b.SetByteCount(R__c, kTRUE);
+      R__b.WriteClassBuffer(mbevts::Class(),this);
    }
 }
 
@@ -511,10 +345,6 @@ namespace ROOT {
       typedef ::mbevts current_t;
       ((current_t*)p)->~current_t();
    }
-   // Wrapper around a custom streamer member function.
-   static void streamer_mbevts(TBuffer &buf, void *obj) {
-      ((::mbevts*)obj)->::mbevts::Streamer(buf);
-   }
 } // end of namespace ROOT for class ::mbevts
 
 //______________________________________________________________________________
@@ -522,15 +352,10 @@ void doppler::Streamer(TBuffer &R__b)
 {
    // Stream an object of class doppler.
 
-   UInt_t R__s, R__c;
    if (R__b.IsReading()) {
-      Version_t R__v = R__b.ReadVersion(&R__s, &R__c); if (R__v) { }
-      TObject::Streamer(R__b);
-      R__b.CheckByteCount(R__s, R__c, doppler::IsA());
+      R__b.ReadClassBuffer(doppler::Class(),this);
    } else {
-      R__c = R__b.WriteVersion(doppler::IsA(), kTRUE);
-      TObject::Streamer(R__b);
-      R__b.SetByteCount(R__c, kTRUE);
+      R__b.WriteClassBuffer(doppler::Class(),this);
    }
 }
 
@@ -553,11 +378,28 @@ namespace ROOT {
       typedef ::doppler current_t;
       ((current_t*)p)->~current_t();
    }
-   // Wrapper around a custom streamer member function.
-   static void streamer_doppler(TBuffer &buf, void *obj) {
-      ((::doppler*)obj)->::doppler::Streamer(buf);
-   }
 } // end of namespace ROOT for class ::doppler
+
+namespace ROOT {
+   // Wrappers around operator new
+   static void *new_hists(void *p) {
+      return  p ? new(p) ::hists : new ::hists;
+   }
+   static void *newArray_hists(Long_t nElements, void *p) {
+      return p ? new(p) ::hists[nElements] : new ::hists[nElements];
+   }
+   // Wrapper around operator delete
+   static void delete_hists(void *p) {
+      delete ((::hists*)p);
+   }
+   static void deleteArray_hists(void *p) {
+      delete [] ((::hists*)p);
+   }
+   static void destruct_hists(void *p) {
+      typedef ::hists current_t;
+      ((current_t*)p)->~current_t();
+   }
+} // end of namespace ROOT for class ::hists
 
 namespace ROOT {
    // Wrappers around operator new
@@ -616,7 +458,7 @@ namespace ROOT {
       vector<int> *ptr = 0;
       static ::TVirtualIsAProxy* isa_proxy = new ::TIsAProxy(typeid(vector<int>));
       static ::ROOT::TGenericClassInfo 
-         instance("vector<int>", -2, "vector", 457,
+         instance("vector<int>", -2, "vector", 458,
                   typeid(vector<int>), ::ROOT::Internal::DefineBehavior(ptr, ptr),
                   &vectorlEintgR_Dictionary, isa_proxy, 0,
                   sizeof(vector<int>) );
@@ -679,7 +521,7 @@ namespace ROOT {
       vector<double> *ptr = 0;
       static ::TVirtualIsAProxy* isa_proxy = new ::TIsAProxy(typeid(vector<double>));
       static ::ROOT::TGenericClassInfo 
-         instance("vector<double>", -2, "vector", 457,
+         instance("vector<double>", -2, "vector", 458,
                   typeid(vector<double>), ::ROOT::Internal::DefineBehavior(ptr, ptr),
                   &vectorlEdoublegR_Dictionary, isa_proxy, 0,
                   sizeof(vector<double>) );
@@ -732,6 +574,7 @@ namespace {
     static const char* headers[] = {
 "../mbevts/mbevts.hh",
 "doppler.hh",
+"hists.hh",
 "MBGeometry.hh",
 "SpedeGeometry.hh",
 0
@@ -739,7 +582,7 @@ namespace {
     static const char* includePaths[] = {
 "./",
 "/opt/local/libexec/root6/include/root",
-"/Users/lpgaff/cernbox/Research/Miniball/C-REX_SortCode/SPEDE-version-20170321/TreeAna/",
+"/Users/dacox/work/SPEDE/CERN_SPEDE/SPEDE-version-20170321/TreeAna/",
 0
     };
     static const char* fwdDeclCode = R"DICTFWDDCLS(
@@ -750,6 +593,7 @@ namespace {
 extern int __Cling_Autoloading_Map;
 class __attribute__((annotate("$clingAutoload$../mbevts/mbevts.hh")))  mbevts;
 class __attribute__((annotate("$clingAutoload$doppler.hh")))  doppler;
+class __attribute__((annotate("$clingAutoload$hists.hh")))  hists;
 class __attribute__((annotate("$clingAutoload$MBGeometry.hh")))  MBGeometry;
 class __attribute__((annotate("$clingAutoload$SpedeGeometry.hh")))  SpedeGeometry;
 )DICTFWDDCLS";
@@ -763,6 +607,7 @@ class __attribute__((annotate("$clingAutoload$SpedeGeometry.hh")))  SpedeGeometr
 #define _BACKWARD_BACKWARD_WARNING_H
 #include "../mbevts/mbevts.hh"
 #include "doppler.hh"
+#include "hists.hh"
 #include "MBGeometry.hh"
 #include "SpedeGeometry.hh"
 
@@ -772,6 +617,7 @@ class __attribute__((annotate("$clingAutoload$SpedeGeometry.hh")))  SpedeGeometr
 "MBGeometry", payloadCode, "@",
 "SpedeGeometry", payloadCode, "@",
 "doppler", payloadCode, "@",
+"hists", payloadCode, "@",
 "mbevts", payloadCode, "@",
 nullptr};
 
