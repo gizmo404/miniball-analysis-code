@@ -219,7 +219,7 @@ double Calibration::AdcEnergy(int adc, int chan, unsigned short raw){
 		return ((fAdcGain[adc][chan]*( raw +0.5 - fRand->Uniform())) + fAdcOffset[adc][chan]);
 
 	}
-	
+	else if ( chan < 0 ) return -1;	
 	else {
 
 		cerr << "adc " << adc << " channel " << chan << " not found!" << endl;

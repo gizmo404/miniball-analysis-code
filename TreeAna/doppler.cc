@@ -160,10 +160,10 @@ Int_t doppler::Cut(Double_t PEn, Double_t anno, Int_t quad) {
 	// inverse kinematics, include overlap region
 	if( AP > AT ){
 
-		if( PEn/1000. > gates[str][1] && PEn/1000. < gates[str][2] && PEn/1000. > 10. )
+		//if( PEn/1000. > gates[str][1] && PEn/1000. < gates[str][2] && PEn/1000. > 10. )//TODO make this sexier
 			identity=0; // target
 
-		else if( PEn/1000. > gates[str][0] && PEn/1000. < gates[str][1] )
+			//else if( PEn/1000. > gates[str][0] && PEn/1000. < gates[str][1] )
 			identity=1; // beam
 
 	}

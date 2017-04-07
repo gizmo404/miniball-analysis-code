@@ -644,6 +644,7 @@ int main(int argc, char* argv[]) {
 								tempRingEnergy = cd_ringenergyhit1[adc_num].back();
 								int ringID = Cal->PosFBCDRing(adc_num, cd_ringidhit1[adc_num].back());
 								//cout << ringID << "\n";
+								if ( ringID > 16 ) ringID = -1;
 								tempRingNum = ringID;
 								tempRingTime = cd_ringtime1[adc_num].back();
 								//cout << "time " << tempRingTime <<"\n";
@@ -758,7 +759,8 @@ int main(int argc, char* argv[]) {
 				Quad.push_back( adc_num );
 				Chan_front.push_back( tempRingNum );
 				Ener_front.push_back( Cal->AdcEnergy( adc_num, tempRingNum, tempRingEnergy ) );
-				Chan_back.push_back( tempStripNum-16 );
+				if (muxed ) Chan_back.push_back( tempStripNum );
+				else Chan_back.push_back( tempStripNum-16 );
 				Ener_back.push_back( tempStripEnergy );
 
 				if (muxed) time.push_back( tempRingTime );

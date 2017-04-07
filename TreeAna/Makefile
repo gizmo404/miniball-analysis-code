@@ -4,19 +4,26 @@
 ROOTCFLAGS	:= $(shell root-config --cflags)
 ROOTLIBS    := $(shell root-config --libs)
 
+MBEVTS_DIR  = ../mbevts
+
 CC       := $(shell root-config --cc)
 CPP      := $(shell root-config --cxx)
-CFLAGS   := -pedantic -Wall -Wno-long-long -g -O3 $(ROOTCFLAGS) -fPIC
+CFLAGS   := -pedantic -Wall -g -O3 $(ROOTCFLAGS) -fPIC -Wno-unused-variable
 
 all: g_clx
- 
-g_clx: g_clx.cc hists.hh ../mbevts/mbevts.o doppler.o MBGeometry.o SpedeGeometry.o g_clx_dict.o
-	$(CPP) $(CFLAGS) $(ROOTLIBS) g_clx.cc ../mbevts/mbevts.o doppler.o MBGeometry.o SpedeGeometry.o -o $@
 
-../mbevts/mbevts.o: ../mbevts/mbevts.cc ../mbevts/mbevts.hh
+OBJECTS = $(MBEVTS_DIR)/mbevts.o doppler.o hists.o MBGeometry.o SpedeGeometry.o g_clx_dict.o
+ 
+g_clx: g_clx.cc $(OBJECTS)
+	$(CPP) $(CFLAGS) $(ROOTLIBS) $< $(OBJECTS) -o $@
+
+$(MBEVTS_DIR)/mbevts.o: $(MBEVTS_DIR)/mbevts.cc $(MBEVTS_DIR)/mbevts.hh
 	$(CC) $(CFLAGS) -c $< -o $@
 
 doppler.o: doppler.cc doppler.hh
+	$(CC) $(CFLAGS) -c $< -o $@
+
+hists.o: hists.cc hists.hh
 	$(CC) $(CFLAGS) -c $< -o $@
 
 MBGeometry.o: MBGeometry.cc MBGeometry.hh
@@ -26,10 +33,11 @@ SpedeGeometry.o: SpedeGeometry.cc SpedeGeometry.hh
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f ../mbevts/*.o *.o *_dict.cc *_dict.h
+	rm -f $(MBEVTS_DIR)/*.o *.o
+	rm -f g_clx_dict.cc g_clx_dict_rdict.pcm
 
 # Root stuff
-DEPENDENCIES = ../mbevts/mbevts.hh doppler.hh MBGeometry.hh SpedeGeometry.hh
+DEPENDENCIES = $(MBEVTS_DIR)/mbevts.hh doppler.hh hists.hh MBGeometry.hh SpedeGeometry.hh RootLinkDef.h
 
 g_clx_dict.o: g_clx_dict.cc
 	 $(CPP) -fPIC $(CFLAGS) $(INCLUDES) -c $<

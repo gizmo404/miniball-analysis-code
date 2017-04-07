@@ -71,7 +71,7 @@
 # include "SpedeGeometry.hh"
 #endif
 #ifndef hist_cxx
-# include "hists.cc"
+# include "hists.hh"
 #endif
 #ifndef g_clx_hh
 # include "g_clx.hh"
