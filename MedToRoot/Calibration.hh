@@ -5,7 +5,7 @@
 #include <iomanip>
 #include <fstream>
 #include <string>
-#include <stdlib.h>
+#include <cstdlib>
 
 #include "TSystem.h"
 #include "TEnv.h"
@@ -33,9 +33,11 @@ public:
 	}
 	double DgfEnergy(int dgf, int chan, unsigned short raw);
 	double AdcEnergy(int adc, int chan, unsigned short raw);
-	double FCDPadEnergy(int Quad, unsigned short raw);
 	int PosFBCDRing(int Quad, unsigned short raw);
 	int PosFBCDStrip(int Quad, unsigned short raw);
+	int PosRing(int Quad, unsigned short raw);
+	int PosStrip(int Quad, unsigned short raw);
+	int StripPosBarrel(unsigned short strraw, unsigned short rearraw);
 
 private:
 
@@ -49,8 +51,6 @@ private:
 	vector< vector<double> > fDgfGain;
 	vector< vector<double> > fAdcOffset;
 	vector< vector<double> > fAdcGain;
-	vector< double > fFCDpadGain;
-	vector< double > fFCDpadOffset;
 	vector< vector<double> > fFCDPosStrip;
 	vector< vector<double> > fFCDPosRing;
 	vector< vector<double> > fBCDPosStrip;
@@ -65,9 +65,8 @@ private:
 	int fNofDgfs;
 	int fNofDgfChans;
 	int fNofAdcs;
-	int fNofFCDPads;
-	int fNofAdcChans;
 	int fNofAdcsCD;
+	int fNofAdcChans;
 	int fNofCDSegm;
  
 	double fFWHMPosMux;
@@ -75,7 +74,7 @@ private:
 
 	int fBeamdumpDgf;
 
-	ClassDef(Calibration, 1);
+	ClassDef(Calibration, 1)
    
 };
 
