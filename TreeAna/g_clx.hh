@@ -23,7 +23,6 @@
 #include <sstream>
 #include <string>
 #include <iomanip>
-#include <ctime>
 using namespace std;
 
 // Header file for the classes stored in the TTree if any.
@@ -41,7 +40,7 @@ using namespace std;
 
 // Fixed size dimensions of array or collections stored in the TTree if any.
 
-class g_clx {
+class g_clx : public TObject {
 	public :
 	TTree          *fChain;   //!pointer to the analyzed TTree or TChain
 	Int_t           fCurrent; //!current Tree number in a TChain
@@ -127,6 +126,8 @@ class g_clx {
 	virtual void		Loop( string outputfilename );
 	virtual Bool_t	Notify();
 	virtual void		Show( Long64_t entry = -1 );
+	
+	ClassDef(g_clx,1);
 	
 };
 
